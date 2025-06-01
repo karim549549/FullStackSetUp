@@ -1,0 +1,30 @@
+node_modules
+# Keep environment variables out of version control
+.env
+# === General ===
+node_modules/
+.env
+.env.*       # Like .env.production or .env.local
+.DS_Store
+dist/
+build/
+*.log
+npm-debug.log*
+# === Next.js ===
+.next/
+out/
+.vercel/
+
+# === NestJS ===
+coverage/
+
+# === Editor folders ===
+.idea/
+.vscode/
+
+# === OS/System ===
+Thumbs.db
+ehthumbs.db
+*.swp
+.sass-cache
+.cache/
