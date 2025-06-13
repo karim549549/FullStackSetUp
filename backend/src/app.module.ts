@@ -3,22 +3,19 @@ import { AuthModule } from './auth/auth.module';
 import { EmailModule } from './email/email.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
-import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { JwtStrategy } from './auth/strategies/jwt.strategy';
-import { JwtRefreshStrategy } from './auth/strategies/refresh.strategy';
-import { JwtAuthGuard } from './auth/guards/jwt.guard';
-import { TokenFactory } from './services/factories/token.factory';
 import { CacheModule } from '@nestjs/cache-manager';
-import * as RedisStore from 'cache-manager-redis-store';
+import { ProfileModule } from './profile/profile.module';
+import { RecipeModule } from './recipe/recipe.module';
+import { DietplanModule } from './dietplan/dietplan.module';
 @Module({
   imports: [
-    CacheModule.register({
+    CacheModule.registerAsync({
       isGlobal: true,
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        store: RedisStore,
+      useFactory: async (configService: ConfigService) => ({
+        store: (await import('cache-manager-redis-store')).default,
         socket: {
           host: configService.get<string>('REDIS_HOST'),
           port: configService.get<number>('REDIS_PORT'),
@@ -33,6 +30,9 @@ import * as RedisStore from 'cache-manager-redis-store';
     PrismaModule,
     AuthModule,
     UserModule,
+    ProfileModule,
+    RecipeModule,
+    DietplanModule,
   ],
 })
 export class AppModule {}

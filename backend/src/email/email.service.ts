@@ -41,14 +41,10 @@ export class EmailService {
 
   async sendVerificationEmail(email: string): Promise<boolean> {
     const verificationCode = this.generate6DigitCode();
-    let verificationCodeExpiration = this.configService.get<number>(
-      'VERIFICATION_CODE_EXPIRATION',
-    );
-    if (!verificationCodeExpiration) {
-      // no we gonna log that this happens  only   and we gonna use  default  value which is 15 min
-      console.log('VERIFICATION_CODE_EXPIRATION is not set in .env file');
-      verificationCodeExpiration = DEFAULT_EXPIRATION_MS; // 15 minutes in seconds
-    }
+    const verificationCodeExpiration =
+      this.configService.get<number>('VERIFICATION_CODE_EXPIRATION') ||
+      DEFAULT_EXPIRATION_MS; // 15 minutes in seconds
+
     await this.cacheManager.set(
       `verify: ${email}`,
       verificationCode,

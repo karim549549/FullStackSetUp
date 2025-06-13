@@ -27,6 +27,14 @@ export class AuthService {
     @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
   ) {}
 
+  async getUserById(id: string): Promise<UserView> {
+    const user = await this.userService.getUserById(id);
+    if (!user) {
+      throw new ForbiddenException('User not found');
+    }
+    return user;
+  }
+
   async login(dto: LoginUserDto): Promise<AuthResponse> {
     const user = await this.userService.getUserByEmail(dto.email);
 
@@ -43,14 +51,13 @@ export class AuthService {
     if (foundedUser) {
       throw new Error('User already exists');
     }
-
     const user = await this.userService.createUser(dto);
-    const isEmailSent = await this.emailService.sendWelcomeEmail(
-      user.name,
-      user.email,
+    // we need then to then the verification code throw our email service
+    const isEmailSent = await this.emailService.sendVerificationEmail(
+      dto.email,
     );
     if (!isEmailSent) {
-      console.log('Email not sent');
+      throw new Error('Email not sent');
     }
     return this.buildAuthResponse(user);
   }
@@ -104,6 +111,10 @@ export class AuthService {
       isEmailVerified: true,
     });
     await this.cacheManager.del(`verify: ${payload.email}`);
+    await this.emailService.sendWelcomeEmail(
+      updatedUser.name,
+      updatedUser.email,
+    );
     return true;
   }
 
@@ -137,7 +148,7 @@ export class AuthService {
   }
   private async validateCode(key: string, code: string): Promise<void> {
     const cachedCode = await this.cacheManager.get(key);
-    if (!cachedCode || cachedCode !== code) {
+    if (!cachedCode || String(cachedCode) !== code) {
       throw new Error('Invalid code');
     }
   }

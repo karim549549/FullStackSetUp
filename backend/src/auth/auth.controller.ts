@@ -54,7 +54,13 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.OK)
   async me(@Req() req: CustomRequest) {
-    return req.user;
+    const user = await this.authService.getUserById(req.user.sub);
+    return {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role
+    };
   }
 
   @Get('refresh')
@@ -65,10 +71,11 @@ export class AuthController {
     @Req() req: CustomRequest,
   ) {
     const payload = req.user;
-    const { accessToken, refreshToken } =
+    const { accessToken, refreshToken, user } =
       await this.authService.refresh(payload);
     cookieBuilder(res, accessToken, refreshToken, this.configService);
-    return { accessToken, refreshToken };
+    console.log('🔄 Refresh Response:', user);
+    return user;
   }
 
   @Post('reset-password')
@@ -90,10 +97,10 @@ export class AuthController {
     return await this.authService.sendVerificationEmail(dto.email);
   }
 
-  @Get('verify-email')
+  @Post('verify-email')
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.OK)
-  async verifyEmail(@Req() req: CustomRequest, @Body() code: string) {
+  async verifyEmail(@Req() req: CustomRequest, @Body('code') code: string) {
     return await this.authService.verifyEmail(code, req.user);
   }
 }

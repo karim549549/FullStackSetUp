@@ -21,19 +21,353 @@ model User {
   
   email      String @unique
   isEmailVerified Boolean @default(false)
-  password   String
   hashPassword   String
   googleId   String?
   githubId   String?
   role       ROLE @default(USER)
 
+  profile    Profile?
+  recipes          Recipe[]       
+  createdDietPlans        DietPlan []
+  dietPlans  UserDietPlan []
+  progressLogs     ProgressLogs[]
+  savedRecipes     SavedRecipe[]
+  savedDietPlans   SavedDietPlan[]
+  notificationSettings NotificationSettings?
+
+  
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  deletedAt  DateTime? @updatedAt
+  deletedAt  DateTime? 
 }
 
+
+model Profile {
+  id                  String     @id @default(uuid()) @map("_id")
+  userId              String     @unique
+  user                User       @relation(fields: [userId], references: [id])
+
+  weight              Float
+  height              Float
+  birthdate           DateTime
+  gender              GENDER
+  activityLevel       ACTIVITY_LEVEL
+
+  medications         MEDICATION[]
+  smoke              Boolean    @default(false)
+  foodIntolerances        FOOD_INTOLERANCE[]
+
+  vegetarian          Boolean    @default(false)
+  vegan               Boolean    @default(false)
+  halal               Boolean    @default(false)
+  kosher              Boolean    @default(false)
+
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt()
+}
+
+
+model Recipe {
+  id            String   @id @default(uuid()) @map("_id")
+  title          String 
+  description   String?
+  imageUrl      String?
+
+  ingredients   String[]
+  instructions  String[]
+
+  cuisine       CUISINE?
+  mealType      MEAL_TYPE
+
+  prepTime      String?
+  cookTime      String?
+
+  calories      Int?
+  protein       Float?
+  fat           Float?
+  saturated_fat Float? 
+  cholesterol   Float?
+  sodium        Float? 
+  fiber         Float? 
+  sugar         Float?
+  vitaminC      Float?
+  calcium       Float?
+  iron          Float?
+  potassium     Float?
+  carbohydrates Float?
+  serving      Int?
+
+  tags          String[]
+  source        RECIPE_SOURCE @default(COMMUNITY)
+
+  createdById   String
+  createdBy     User     @relation(fields: [createdById], references: [id])
+  
+  meals Meal[]
+
+  savedByUsers SavedRecipe[]
+ 
+  isPublished   Boolean  @default(false)
+
+  likes         Int       @default(0)
+  comments    Json?   @db.Json  
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt()
+
+  @@index([createdById])
+  @@index([mealType])
+  @@index([cuisine])
+  @@index([tags])
+  @@index([title])
+}
+model Meal {
+  id            String   @id @default(uuid()) @map("_id")
+  mealType MEAL_TYPE
+
+  recipeId  String 
+  recipe  Recipe  @relation(fields: [recipeId], references: [id])
+
+  dayId   String 
+  day  DietDay  @relation(fields: [dayId], references: [id])
+
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt()
+}
+model DietDay {
+  id            String   @id @default(uuid()) @map("_id")
+  dayOrder  Int  @default(0)
+
+  dietPlanId  String 
+  dietPlan  DietPlan  @relation(fields: [dietPlanId], references: [id])
+
+  meals  Meal[]
+  
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt()
+  @@unique([dietPlanId, dayOrder])
+}
+model DietPlan{
+  id            String   @id @default(uuid()) @map("_id")
+  name          String
+  description   String?
+  imageUrl      String?
+
+  creatorId     String
+  creator       User     @relation(fields: [creatorId], references: [id])
+
+  goal      GOAL   
+  cuisine   Json?   @db.Json  
+  includeSnacks Boolean @default(true)
+  mealPerDay  Int  @default(3)
+  macros    Json?   @db.Json 
+  durationInWeeks  Int  @default(8)  
+
+  isPublished  Boolean @default(false)
+  liked   Int  @default(0)
+  comments    Json?   @db.Json 
+  averageRating  Float  @default(0)
+  ratingCount  Int  @default(0)
+
+  userDietPlans UserDietPlan[]
+  dietDays  DietDay[]
+
+  savedByUsers SavedDietPlan[]
+
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt()
+
+  @@index([isPublished])
+  @@index([creatorId])
+}
+model UserDietPlan { 
+  id            String   @id @default(uuid()) @map("_id")
+  dietPlanId    String  
+  dietPlan      DietPlan  @relation(fields: [dietPlanId], references: [id])
+  userId        String  
+  user          User      @relation(fields: [userId], references: [id])
+  progressLogs  ProgressLogs[]
+  status        DIET_PLAN_STATUS @default(NEW)
+  activatedAt   DateTime?
+
+  @@unique([userId, dietPlanId])
+}
+model  ProgressLogs {
+  id            String   @id @default(uuid()) @map("_id")
+
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+
+  userDietPlanId String?
+  userDietPlan  UserDietPlan? @relation(fields: [userDietPlanId], references: [id])
+
+  weight        Float
+  bodyFat       Float?
+  muscleMass    Float?
+  notes         String?
+
+  loggedAt      DateTime @default(now())
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt()
+
+  @@index([userId])
+}
+
+model SavedRecipe {
+  id        String   @id @default(uuid()) @map("_id")
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  recipeId  String
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
+  savedAt   DateTime @default(now())
+
+  @@unique([userId, recipeId])
+}
+
+model SavedDietPlan {
+  id        String   @id @default(uuid()) @map("_id")
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  dietPlanId String
+  dietPlan  DietPlan @relation(fields: [dietPlanId], references: [id])
+  savedAt   DateTime @default(now())
+
+  @@unique([userId, dietPlanId])
+}
+
+model NotificationSettings {
+  id                    String   @id @default(uuid()) @map("_id")
+  userId                String   @unique
+  user                  User     @relation(fields: [userId], references: [id])
+  emailNotifications    Boolean  @default(true)
+  pushNotifications     Boolean  @default(true)
+  dietPlanReminders     Boolean  @default(true)
+  progressUpdates       Boolean  @default(true)
+  newRecipeAlerts       Boolean  @default(true)
+  communityUpdates      Boolean  @default(true)
+  reminderTime          DateTime?
+  timezone              String   @default("UTC")
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
 
 enum ROLE { 
   USER
   ADMIN
+}
+
+enum GENDER{
+  MALE
+  FEMALE
+}
+
+enum ACTIVITY_LEVEL{
+  SEDENTARY
+  LIGHTLY_ACTIVE
+  MODERATELY_ACTIVE
+  VERY_ACTIVE
+  EXTRA_ACTIVE
+}
+enum FOOD_INTOLERANCE{
+  LACTOSE
+  GLUTEN
+  NUTS
+  SHELLFISH
+  EGGS
+  SOY
+  FISH
+  PEANUTS
+  WALNUTS
+  CELERY
+  MUSTARD
+  SESAME
+  SULPHITES
+  SUGAR
+  SUGAR_ALCOHOLS
+  XANTHAN_GUM
+  POTASSIUM
+  PHOSPHORUS
+  SODIUM
+  IODINE
+  CALCIUM
+  CORN
+  TOMATO
+  CHOCOLATE
+  STRAWBERRY
+  BEEF
+  PORK
+  CITRUS_FRUITS
+  DAIRY
+}
+
+enum MEDICATION {
+  DIURETICS
+  ACE_INHIBITORS
+  STATINS
+  ANTICOAGULANTS
+  DIABETES_MEDS
+  MAO_INHIBITORS
+  CORTICOSTEROIDS
+  ANTACIDS
+  THYROID
+  IMMUNOSUPPRESSANTS
+}
+
+enum CUISINE {
+  AMERICAN 
+  ASIAN  
+  ITALIAN 
+  MEXICAN
+  FRENCH  
+  MEDITTERRANEAN
+  THAI  
+  INDIAN  
+  MIDDLE_EASTERN
+  JAPANESE
+  OTHER 
+}
+
+enum RECIPE_SOURCE{
+  COMMUNITY
+  OFFICIAL
+}
+
+enum MEAL_TYPE{
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACK
+  DESSERT
+}
+enum GOAL {
+  LOSE_WEIGHT
+  GAIN_WEIGHT
+  MAINTAIN_WEIGHT
+  BUILD_MUSCLE
+  IMPROVE_ENDURANCE
+}
+enum TAG {
+  VEGETARIAN
+  VEGAN
+  GLUTEN_FREE
+  DAIRY_FREE
+  NUT_FREE
+  LOW_CARB
+  HIGH_PROTEIN
+  LOW_FAT
+  KETO
+  PALEO
+  WHOLE30
+  DIABETIC_FRIENDLY
+  HEART_HEALTHY
+  QUICK_AND_EASY
+  MEAL_PREP
+}
+
+enum DIET_PLAN_STATUS {
+  NEW
+  ACTIVE
+  NOT_ACTIVE
 }

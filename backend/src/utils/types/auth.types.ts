@@ -11,20 +11,17 @@ export type AuthResponse = {
     role: string;
   };
 };
-
 export enum TokenType {
   ACCESS,
   REFRESH,
   RESET_PASSWORD,
   VERIFY_EMAIL,
 }
-
 export type TokenPayload = {
   sub: string;
   email: string;
   role: ROLE;
 };
-
 export type CustomRequest = Request & {
   user: TokenPayload;
 };

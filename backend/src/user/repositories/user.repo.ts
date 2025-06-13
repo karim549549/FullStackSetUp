@@ -38,7 +38,8 @@ export class UserRepository {
     return this.prisma.user.create({
       data: {
         hashPassword: bcrypt.hashSync(data.password, 10),
-        ...data,
+        email: data.email,
+        name: data.name,
       },
       select: this.UserViewSelect,
     });

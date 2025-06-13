@@ -1,0 +1,412 @@
+{
+  "success": true,
+  "data": {
+    "status": "success",
+    "data": {
+      "success": true,
+      "meal_plan": [
+        [
+          {
+            "title": "Chicken Noodle Soup with Egg Noodles",
+            "score": 0.33799123764038086,
+            "calories": 392,
+            "fat": 15,
+            "carbs": 24,
+            "protein": 26,
+            "meal_type": "lunch"
+          },
+          {
+            "title": "Chili Garlic Shrimp",
+            "score": 0.35169100761413574,
+            "calories": 368,
+            "fat": 13,
+            "carbs": 12,
+            "protein": 17,
+            "meal_type": "dinner"
+          },
+          {
+            "title": "Chicharrones de Pollo",
+            "score": 0.36249154806137085,
+            "calories": 180,
+            "fat": 40,
+            "carbs": 175,
+            "protein": 44,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Feta and Sardine Flatbread",
+            "score": 0.3457118570804596,
+            "calories": 296,
+            "fat": 23,
+            "carbs": 61,
+            "protein": 18,
+            "meal_type": "breakfast"
+          },
+          {
+            "title": "Mussels with Chorizo",
+            "score": 0.40032750368118286,
+            "calories": 142,
+            "fat": 31,
+            "carbs": 20,
+            "protein": 43,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Tofu Cheesecake",
+            "score": 0.3410276770591736,
+            "calories": 303,
+            "fat": 18,
+            "carbs": 46,
+            "protein": 8,
+            "meal_type": "dessert"
+          }
+        ],
+        [
+          {
+            "title": "Chicken Noodle Soup with Egg Noodles",
+            "score": 0.33799123764038086,
+            "calories": 392,
+            "fat": 15,
+            "carbs": 24,
+            "protein": 26,
+            "meal_type": "lunch"
+          },
+          {
+            "title": "Chili Garlic Shrimp",
+            "score": 0.35169100761413574,
+            "calories": 368,
+            "fat": 13,
+            "carbs": 12,
+            "protein": 17,
+            "meal_type": "dinner"
+          },
+          {
+            "title": "Chicharrones de Pollo",
+            "score": 0.36249154806137085,
+            "calories": 180,
+            "fat": 40,
+            "carbs": 175,
+            "protein": 44,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Feta and Sardine Flatbread",
+            "score": 0.3457118570804596,
+            "calories": 296,
+            "fat": 23,
+            "carbs": 61,
+            "protein": 18,
+            "meal_type": "breakfast"
+          },
+          {
+            "title": "Mussels with Chorizo",
+            "score": 0.40032750368118286,
+            "calories": 142,
+            "fat": 31,
+            "carbs": 20,
+            "protein": 43,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Tofu Cheesecake",
+            "score": 0.3410276770591736,
+            "calories": 303,
+            "fat": 18,
+            "carbs": 46,
+            "protein": 8,
+            "meal_type": "dessert"
+          }
+        ],
+        [
+          {
+            "title": "Holiday Chicken Salad",
+            "score": 0.33799123764038086,
+            "calories": 320,
+            "fat": 23,
+            "carbs": 15,
+            "protein": 14,
+            "meal_type": "lunch"
+          },
+          {
+            "title": "Dad's New Zealand Mince Stew",
+            "score": 0.3392961621284485,
+            "calories": 384,
+            "fat": 32,
+            "carbs": 25,
+            "protein": 22,
+            "meal_type": "dinner"
+          },
+          {
+            "title": "Grits a Ya Ya",
+            "score": 0.3457118570804596,
+            "calories": 291,
+            "fat": 71,
+            "carbs": 22,
+            "protein": 30,
+            "meal_type": "breakfast"
+          },
+          {
+            "title": "Smoked Mackerel, Beets, Apples, and Bread Crisps",
+            "score": 0.40032750368118286,
+            "calories": 102,
+            "fat": 9,
+            "carbs": 39,
+            "protein": 18,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Smoked Mackerel, Beets, Apples, and Bread Crisps",
+            "score": 0.40032750368118286,
+            "calories": 102,
+            "fat": 9,
+            "carbs": 39,
+            "protein": 18,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Triple Chocolate Tofu Brownies",
+            "score": 0.3410276770591736,
+            "calories": 348,
+            "fat": 11,
+            "carbs": 34,
+            "protein": 4,
+            "meal_type": "dessert"
+          }
+        ],
+        [
+          {
+            "title": "Herb and Garlic Roast Tenderloin with Creamy Horseradish Sauce",
+            "score": 0.3396781086921692,
+            "calories": 393,
+            "fat": 27,
+            "carbs": 2,
+            "protein": 17,
+            "meal_type": "lunch"
+          },
+          {
+            "title": "The Best Easy Shrimp Enchiladas",
+            "score": 0.35169100761413574,
+            "calories": 396,
+            "fat": 28,
+            "carbs": 39,
+            "protein": 26,
+            "meal_type": "dinner"
+          },
+          {
+            "title": "Breakfast Nachos",
+            "score": 0.35284167528152466,
+            "calories": 267,
+            "fat": 51,
+            "carbs": 43,
+            "protein": 30,
+            "meal_type": "breakfast"
+          },
+          {
+            "title": "Shrimp Scampi Cheesecake Appetizer",
+            "score": 0.40032750368118286,
+            "calories": 163,
+            "fat": 56,
+            "carbs": 23,
+            "protein": 27,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Loaded Potato Focaccia",
+            "score": 0.3901078701019287,
+            "calories": 123,
+            "fat": 14,
+            "carbs": 57,
+            "protein": 15,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Tofu Pumpkin Pie",
+            "score": 0.3410276770591736,
+            "calories": 306,
+            "fat": 9,
+            "carbs": 35,
+            "protein": 5,
+            "meal_type": "dessert"
+          }
+        ],
+        [
+          {
+            "title": "Sticky Fingers Salad",
+            "score": 0.33799123764038086,
+            "calories": 330,
+            "fat": 39,
+            "carbs": 95,
+            "protein": 30,
+            "meal_type": "lunch"
+          },
+          {
+            "title": "Marry Me Shrimp Pasta",
+            "score": 0.35169100761413574,
+            "calories": 382,
+            "fat": 16,
+            "carbs": 20,
+            "protein": 15,
+            "meal_type": "dinner"
+          },
+          {
+            "title": "Chicken Leg Toast",
+            "score": 0.3671596348285675,
+            "calories": 226,
+            "fat": 38,
+            "carbs": 54,
+            "protein": 36,
+            "meal_type": "breakfast"
+          },
+          {
+            "title": "Garlic Shrimp in a Blanket",
+            "score": 0.40032750368118286,
+            "calories": 172,
+            "fat": 9,
+            "carbs": 9,
+            "protein": 4,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Sardine Dip",
+            "score": 0.40032750368118286,
+            "calories": 144,
+            "fat": 24,
+            "carbs": 3,
+            "protein": 10,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Triple Chocolate Tofu Brownies",
+            "score": 0.3410276770591736,
+            "calories": 348,
+            "fat": 11,
+            "carbs": 34,
+            "protein": 4,
+            "meal_type": "dessert"
+          }
+        ],
+        [
+          {
+            "title": "Homemade Sloppy Joes",
+            "score": 0.3396781086921692,
+            "calories": 359,
+            "fat": 12,
+            "carbs": 14,
+            "protein": 22,
+            "meal_type": "lunch"
+          },
+          {
+            "title": "Crab Ceviche",
+            "score": 0.35169100761413574,
+            "calories": 302,
+            "fat": 2,
+            "carbs": 9,
+            "protein": 3,
+            "meal_type": "dinner"
+          },
+          {
+            "title": "Chicharrones de Pollo",
+            "score": 0.36249154806137085,
+            "calories": 180,
+            "fat": 40,
+            "carbs": 175,
+            "protein": 44,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Feta and Sardine Flatbread",
+            "score": 0.3457118570804596,
+            "calories": 296,
+            "fat": 23,
+            "carbs": 61,
+            "protein": 18,
+            "meal_type": "breakfast"
+          },
+          {
+            "title": "Mussels with Chorizo",
+            "score": 0.40032750368118286,
+            "calories": 142,
+            "fat": 31,
+            "carbs": 20,
+            "protein": 43,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Chocolate-Banana Tofu Pudding",
+            "score": 0.3410276770591736,
+            "calories": 334,
+            "fat": 4,
+            "carbs": 21,
+            "protein": 6,
+            "meal_type": "dessert"
+          }
+        ],
+        [
+          {
+            "title": "Chicken Noodle Soup with Egg Noodles",
+            "score": 0.33799123764038086,
+            "calories": 392,
+            "fat": 15,
+            "carbs": 24,
+            "protein": 26,
+            "meal_type": "lunch"
+          },
+          {
+            "title": "Chili Garlic Shrimp",
+            "score": 0.35169100761413574,
+            "calories": 368,
+            "fat": 13,
+            "carbs": 12,
+            "protein": 17,
+            "meal_type": "dinner"
+          },
+          {
+            "title": "Grits a Ya Ya",
+            "score": 0.3457118570804596,
+            "calories": 291,
+            "fat": 71,
+            "carbs": 22,
+            "protein": 30,
+            "meal_type": "breakfast"
+          },
+          {
+            "title": "Shrimp Cocktail Cream Cheese Dip",
+            "score": 0.40032750368118286,
+            "calories": 165,
+            "fat": 4,
+            "carbs": 4,
+            "protein": 3,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Smoked Mackerel, Beets, Apples, and Bread Crisps",
+            "score": 0.40032750368118286,
+            "calories": 102,
+            "fat": 9,
+            "carbs": 39,
+            "protein": 18,
+            "meal_type": "snack"
+          },
+          {
+            "title": "Triple Chocolate Tofu Brownies",
+            "score": 0.3410276770591736,
+            "calories": 348,
+            "fat": 11,
+            "carbs": 34,
+            "protein": 4,
+            "meal_type": "dessert"
+          }
+        ]
+      ],
+      "summary": {
+        "total_days": 7,
+        "total_meals": 42,
+        "unique_recipes": 26,
+        "variety_score": 61.904761904761905,
+        "avg_daily_calories": 1634
+      },
+      "message": "Successfully generated 7-day meal plan"
+    }
+  },
+  "message": "Request successful"
+}

@@ -9,7 +9,7 @@ export class EmailFactory {
     const filePath = path.join(
       __dirname,
       '..',
-      'templates',
+      '../templates',
       `${templateName}.template.html`,
     );
 

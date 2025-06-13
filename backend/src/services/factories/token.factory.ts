@@ -13,8 +13,13 @@ export class TokenFactory {
 
   async createToken(type: TokenType, payload: string | TokenPayload) {
     const { secret, expiresIn } = this.getTokenExpirationAndSecret(type);
-    const token = this.jwtService.sign({ payload }, { secret, expiresIn });
-    return token;
+    if (typeof payload === 'string') {
+      return this.jwtService.sign({ sub: payload }, { secret, expiresIn });
+    }
+    return this.jwtService.sign(payload as object, {
+      secret,
+      expiresIn,
+    });
   }
 
   async verifyToken(token: string, type: TokenType) {

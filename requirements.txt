@@ -1,0 +1,37 @@
+# FitAI - User Features
+
+## User Actions
+- Sign up/login with email/password
+- Sign up/login with Google/GitHub
+- Verify email
+- Use app as guest
+
+## Profile Actions
+- Create profile with:
+  - Weight, height, birthdate, gender
+  - Activity level
+  - Medications and food intolerances
+  - Dietary preferences (vegetarian, vegan, halal, kosher)
+- Update profile
+- View profile
+
+## Diet Plan Actions
+- Create diet plan through 4 steps:
+  1. Set goals and preferences
+  2. Choose cuisines
+  3. Add profile information
+  4. Review and generate
+- View created diet plans
+- Publish diet plan to community
+- Rate and comment on diet plans
+- Like diet plans
+- Track progress with diet plan
+
+## Recipe Actions
+- Create recipes
+- View recipes
+- Publish recipes to community
+- Like and comment on recipes
+- Use recipes in diet plans
+
+
